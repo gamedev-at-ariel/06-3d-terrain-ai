@@ -12,8 +12,6 @@
 [Mm]emoryCaptures/
 
 Assets/**/TextMesh*/
-Assets/Samples/Terrain*/
-
 
 # Console applications:
 **/bin/Release
