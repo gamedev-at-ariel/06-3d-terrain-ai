@@ -10,7 +10,9 @@
 [Bb]uilds/
 [Ll]ogs/
 [Mm]emoryCaptures/
+
 Assets/**/TextMesh*/
+Assets/Samples/Terrain*/
 
 
 # Console applications:
