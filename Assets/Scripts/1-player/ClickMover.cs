@@ -26,10 +26,10 @@ public class ClickMover: MonoBehaviour {
                 Debug.DrawRay(rayFromCameraToClickPosition.origin, rayFromCameraToClickPosition.direction * 100, Color.white, 1);
 
             RaycastHit hitInfo;
-            Physics.Raycast(rayFromCameraToClickPosition, out hitInfo);
-
-            agent.SetDestination(hitInfo.point);
-            Debug.Log("Right button clicked. Hit point "+ hitInfo.point);
+            bool hasHit = Physics.Raycast(rayFromCameraToClickPosition, out hitInfo);
+            if (hasHit) {
+                agent.SetDestination(hitInfo.point);
+            }
         }
     }
 }
