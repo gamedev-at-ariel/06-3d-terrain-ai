@@ -16,17 +16,19 @@ public class CharacterKeyboardMover: MonoBehaviour {
         _cc = GetComponent<CharacterController>();
     }
 
+    Vector3 velocity;
+
     void Update()  {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-        if (x == 0 && z == 0) return;
-        Vector3 direction = new Vector3(x, 0, z);
-        Vector3 velocity = direction * _speed;
+        //if (x == 0 && z == 0) return;
+        velocity.x = x * _speed;
+        velocity.z = z * _speed;
         if (!_cc.isGrounded) {
             velocity.y -= _gravity*Time.deltaTime;
         }
         velocity = transform.TransformDirection(velocity);
-        Debug.Log(velocity);
+        Debug.Log("velocity="+velocity+" isGrounded="+ _cc.isGrounded);
         _cc.Move(velocity * Time.deltaTime);
     }
 }
