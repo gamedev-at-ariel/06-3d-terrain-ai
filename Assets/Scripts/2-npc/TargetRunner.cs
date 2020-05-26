@@ -14,12 +14,18 @@ public class TargetRunner: MonoBehaviour {
     [Tooltip("Maximum time to wait at target between running to the next target")]
     [SerializeField] private float maxWaitAtTarget = 15f;
 
-    private Target[] allTargets;
+    [SerializeField] private Target[] allTargets;
     [SerializeField] private Target currentTarget = null;
     private float timeToNextTarget = 0;
 
     private NavMeshAgent navMeshAgent;
     private Animator animator;
+
+    private void Start() {
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
+        SelectNewTarget();
+    }
 
     private void SelectNewTarget() {
         currentTarget = allTargets[Random.Range(0, allTargets.Length - 1)];
@@ -28,17 +34,10 @@ public class TargetRunner: MonoBehaviour {
     }
 
 
-    private void Start() {
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
-        allTargets = FindObjectsOfType<Target>();
-        SelectNewTarget();
-    }
-
     private void Update() {
         if (navMeshAgent.hasPath) {
-            //FaceDirection();
-            //transform.LookAt(navMeshAgent.destination);
+            FaceDirection();
+            transform.LookAt(navMeshAgent.destination);
         } else {   // we are at the target
             if (animator) animator.SetBool("Run", false);
             timeToNextTarget -= Time.deltaTime;

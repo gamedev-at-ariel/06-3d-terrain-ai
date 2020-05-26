@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 
 /**
@@ -12,13 +13,8 @@ public class CursorHider: MonoBehaviour {
 
     void Update()  {
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (!Cursor.visible) {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-            } else {
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-            }
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }
