@@ -3,10 +3,16 @@ using UnityEngine.AI;
 
 
 /**
- * This component sends its object to a point in the world whenever the player right-clicks on that point.
+ * This component sends its object to a point in the world whenever the player clicks on that point.
  */
 [RequireComponent(typeof(NavMeshAgent))]
-public class ClickMover: MonoBehaviour {
+public class ClickMover : MonoBehaviour {
+
+    [Tooltip("0 = left mouse button; 1 = right mouse button")]
+    [Range(0, 1)]
+    [SerializeField] int mouseButtonToClick;
+
+    [SerializeField] bool drawRayForDebug = true;
 
     private NavMeshAgent agent;
     void Start() {
@@ -14,12 +20,17 @@ public class ClickMover: MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetMouseButtonDown(1)) {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if (Input.GetMouseButton(mouseButtonToClick)) {
+            Ray rayFromCameraToClickPosition = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (drawRayForDebug)
+                Debug.DrawRay(rayFromCameraToClickPosition.origin, rayFromCameraToClickPosition.direction * 100, Color.white, 1);
+
             RaycastHit hitInfo;
-            Physics.Raycast(ray, out hitInfo);
-            agent.SetDestination(hitInfo.point);
-            Debug.Log("Right button clicked. Hit point "+ hitInfo.point);
+            bool hasHit = Physics.Raycast(rayFromCameraToClickPosition, out hitInfo);
+            if (hasHit) {
+                agent.SetDestination(hitInfo.point);
+            }
         }
     }
 }

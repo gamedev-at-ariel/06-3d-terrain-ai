@@ -1,20 +1,24 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 /**
  * This component hides the cursor, but lets the player show it by clicking ESC.
  */
-public class CursorHider: MonoBehaviour {
+public class CursorHider : MonoBehaviour {
     void Start() {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    void Update()  {
+    void Update() {
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            if (!Cursor.visible) {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            } else {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
     }
 }

@@ -6,7 +6,7 @@
 public class WeaponEnemy : MonoBehaviour {
     AudioSource _audioS;
 
-    [SerializeField] Enemy _enemy;
+    [SerializeField] Enemy _enemy = null;
 
     void Start() {
         _audioS = GetComponent<AudioSource>();
