@@ -27,6 +27,7 @@ public class CharacterKeyboardMover: MonoBehaviour {
         if (!_cc.isGrounded) {
             velocity.y -= _gravity*Time.deltaTime;
         }
+        // Click Up: velocity = (0,0,1)
         velocity = transform.TransformDirection(velocity);
         Debug.Log("velocity="+velocity+" isGrounded="+ _cc.isGrounded);
         _cc.Move(velocity * Time.deltaTime);
