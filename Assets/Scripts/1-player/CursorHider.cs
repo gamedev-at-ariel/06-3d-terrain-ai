@@ -2,7 +2,8 @@
 
 
 /**
- * This component hides the cursor, but lets the player show it by clicking ESC.
+ * This component lets the player show/hide the cursor by clicking ESC.
+ * Initially, it hides the cursor.
  */
 public class CursorHider : MonoBehaviour {
     void Start() {

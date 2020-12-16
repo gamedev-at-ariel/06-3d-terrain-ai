@@ -14,7 +14,7 @@ public class TargetRunner: MonoBehaviour {
     [Tooltip("Maximum time to wait at target between running to the next target")]
     [SerializeField] private float maxWaitAtTarget = 15f;
 
-    [SerializeField] private Target[] allTargets;
+    [SerializeField] private Target[] allTargets = null;
     [SerializeField] private Target currentTarget = null;
     private float timeToNextTarget = 0;
 
