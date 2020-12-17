@@ -8,6 +8,7 @@ public class LookY : MonoBehaviour {
 
     void Update() {
         float _mouseY = Input.GetAxis("Mouse Y");
+        Debug.Log("mouse y = " + _mouseY);
         Vector3 rotation = transform.localEulerAngles;
         rotation.x -= _mouseY * _speedRotation;
         transform.localEulerAngles = rotation;

@@ -14,45 +14,53 @@ public class TargetRunner: MonoBehaviour {
     [Tooltip("Maximum time to wait at target between running to the next target")]
     [SerializeField] private float maxWaitAtTarget = 15f;
 
-    [SerializeField] private Target[] allTargets = null;
+
+    [Tooltip("A game object whose children have a Target component. Each child represents a target.")]
+    [SerializeField] private Transform targetFolder = null;
+    private Target[] allTargets = null;
+
+    [Header("For debugging")]
     [SerializeField] private Target currentTarget = null;
-    private float timeToNextTarget = 0;
+    [SerializeField] private float timeToWaitAtTarget = 0;
 
     private NavMeshAgent navMeshAgent;
     private Animator animator;
+    private float rotationSpeed = 5f;
 
     private void Start() {
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+
+        allTargets = targetFolder.GetComponentsInChildren<Target>(false); // get components in active children only
+        Debug.Log("Found " + allTargets.Length + " targets.");
         SelectNewTarget();
     }
 
     private void SelectNewTarget() {
         currentTarget = allTargets[Random.Range(0, allTargets.Length - 1)];
+        Debug.Log("New target: " + currentTarget.name);
         navMeshAgent.SetDestination(currentTarget.transform.position);
-        if (animator) animator.SetBool("Run", true);
+        //if (animator) animator.SetBool("Run", true);
+        timeToWaitAtTarget = Random.Range(minWaitAtTarget, maxWaitAtTarget);
     }
 
 
     private void Update() {
         if (navMeshAgent.hasPath) {
-            FaceDirection();
-            transform.LookAt(navMeshAgent.destination);
+            FaceDestination();
         } else {   // we are at the target
-            if (animator) animator.SetBool("Run", false);
-            timeToNextTarget -= Time.deltaTime;
-            if (timeToNextTarget <= 0) {
+            //if (animator) animator.SetBool("Run", false);
+            timeToWaitAtTarget -= Time.deltaTime;
+            if (timeToWaitAtTarget <= 0)
                 SelectNewTarget();
-                timeToNextTarget = Random.Range(minWaitAtTarget, maxWaitAtTarget);
-            }
         }
     }
 
-    private void FaceDirection() {
-        Vector3 direction = (navMeshAgent.destination - transform.position).normalized;
-        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-        // transform.rotation = lookRotation;
-        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5);
+    private void FaceDestination() {
+        Vector3 directionToDestination = (navMeshAgent.destination - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(directionToDestination.x, 0, directionToDestination.z));
+        //transform.rotation = lookRotation; // Immediate rotation
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed); // Gradual rotation
     }
 
 
