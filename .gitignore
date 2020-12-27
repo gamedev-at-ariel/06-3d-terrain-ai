@@ -107,3 +107,7 @@ $RECYCLE.BIN/
 
 # Pycharm project
 .idea
+Assets/Scenes/4-ai/ExScene.meta
+Assets/Prefabs/EnemyEngine.prefab.meta
+Assets/Scenes/4-ai/ExScene/NavMesh.asset.meta
+Assets/Scenes/4-ai/ExScene/NavMesh.asset.meta
