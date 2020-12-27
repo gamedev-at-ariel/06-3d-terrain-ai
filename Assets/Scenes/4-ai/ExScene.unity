@@ -983,6 +983,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 8
   _gravity: 9.81
+  keyToChangeSpeed: 32
+  fastSpeed: 24
 --- !u!114 &1673566018
 MonoBehaviour:
   m_ObjectHideFlags: 0
