@@ -1139,7 +1139,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 479580850}
   grenade: {fileID: 3685823241867768402, guid: 5fc96bd6354d6b14d969917069a1207b, type: 3}
   range: 10
-  keyToLaunch: 113
+  keyToLaunch: 101
 --- !u!1001 &1725965668
 PrefabInstance:
   m_ObjectHideFlags: 0
