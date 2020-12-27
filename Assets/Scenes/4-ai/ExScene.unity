@@ -2033,6 +2033,7 @@ GameObject:
   - component: {fileID: 1673566018}
   - component: {fileID: 1673566017}
   - component: {fileID: 1673566016}
+  - component: {fileID: 1673566024}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2172,9 +2173,26 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1088406134}
+  - {fileID: 479580850}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1673566024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673566015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0ba2b9eac1c3df4daeb1175f56a54ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 479580850}
+  grenade: {fileID: 3685823241867768402, guid: 5fc96bd6354d6b14d969917069a1207b, type: 3}
+  range: 10
+  keyToLaunch: 113
 --- !u!1001 &1725965668
 PrefabInstance:
   m_ObjectHideFlags: 0
