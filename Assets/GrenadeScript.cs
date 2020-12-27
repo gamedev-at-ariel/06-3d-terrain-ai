@@ -33,7 +33,10 @@ public class GrenadeScript : MonoBehaviour
 
         foreach(Collider near in colliders)
         {
-            Debug.Log("DEAD!");
+            if(near.tag == "Enemy") {
+                Debug.Log(near.name+" is DEAD!");
+                Destroy(near.gameObject);
+            }
         }
         //Instantiate(explosionEffect,transform.position,transform.rotation);
         Destroy(gameObject);
