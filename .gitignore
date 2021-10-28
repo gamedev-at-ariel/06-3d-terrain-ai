@@ -2,6 +2,7 @@
 # This .gitignore file should be placed at the root of your Unity project directory
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
+# See also here https://forum.unity.com/threads/whats-the-usersettings-directory.754436/
 #
 [Ll]ibrary/
 [Tt]emp/
@@ -10,15 +11,7 @@
 [Bb]uilds/
 [Ll]ogs/
 [Mm]emoryCaptures/
-
-Assets/**/TextMesh*/
-
-# Console applications:
-**/bin/Release
-**/bin/Debug
-**/obj/Release
-**/obj/Debug
-
+[Uu]ser[Ss]ettings/
 
 # Never ignore Asset meta data
 ![Aa]ssets/**/*.meta
@@ -63,12 +56,18 @@ sysinfo.txt
 
 # Builds
 *.apk
+*.aab
 *.unitypackage
-
 
 # Crashlytics generated file
 crashlytics-build.properties
 
+# Packed Addressables
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+
+# Temporary auto-generated Android Assets
+/[Aa]ssets/[Ss]treamingAssets/aa.meta
+/[Aa]ssets/[Ss]treamingAssets/aa/*
 
 
 
