@@ -8,7 +8,7 @@ A project with step-by-step scenes illustrating how to construct a 3D game, incl
 * Target visualization with gizmmos.
 
 Text explanations are available 
-[here](https://github.com/erelsgl-at-ariel/gamedev-5782) in folder 08.
+[here](https://github.com/gamedev-at-ariel/gamedev-5782) in folder 08.
 
 ## Cloning
 To clone the project, you may need to install git lfs first:
