@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -108,8 +108,8 @@ NavMeshSettings:
     agentTypeID: 0
     agentRadius: 1.01
     agentHeight: 1.94
-    agentSlope: 45
-    agentClimb: 0.55
+    agentSlope: 44.9
+    agentClimb: 1.06
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -516,6 +516,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3508109048403185397, guid: 8f2244bd8775be140aee8321dfe0d112,
         type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508109048403185397, guid: 8f2244bd8775be140aee8321dfe0d112,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 210
       objectReference: {fileID: 0}
@@ -531,6 +536,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3508109048403185397, guid: 8f2244bd8775be140aee8321dfe0d112,
         type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9659258
+      objectReference: {fileID: 0}
+    - target: {fileID: 3508109048403185397, guid: 8f2244bd8775be140aee8321dfe0d112,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: -0
       objectReference: {fileID: 0}
@@ -543,16 +553,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3508109048403185397, guid: 8f2244bd8775be140aee8321dfe0d112,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.9659258
-      objectReference: {fileID: 0}
-    - target: {fileID: 3508109048403185397, guid: 8f2244bd8775be140aee8321dfe0d112,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3508109048403185397, guid: 8f2244bd8775be140aee8321dfe0d112,
         type: 3}
@@ -705,7 +705,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642cf17ab4831fa46a1b8262c0f6ae14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedRotation: 1
+  rotationSpeed: 1
 --- !u!4 &6366735189933779596
 Transform:
   m_ObjectHideFlags: 0
@@ -750,7 +750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed6f9c874ce5a3f46a9aef2cff161a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speedRotation: 1
+  rotationSpeed: 1
 --- !u!4 &6366735190010363688
 Transform:
   m_ObjectHideFlags: 0

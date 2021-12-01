@@ -3,11 +3,11 @@ using UnityEngine.AI;
 
 
 /**
- * This component represents an NPC that runs randomly between targets.
- * The targets are all the objects with a Target component.
+ * This component represents an NPC that patrols randomly between targets.
+ * The targets are all the objects with a Target component inside a given folder.
  */
 [RequireComponent(typeof(NavMeshAgent))]
-public class TargetRunner: MonoBehaviour {
+public class Patroller: MonoBehaviour {
     [Tooltip("Minimum time to wait at target between running to the next target")]
     [SerializeField] private float minWaitAtTarget = 7f;
 
@@ -31,8 +31,8 @@ public class TargetRunner: MonoBehaviour {
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
 
-        allTargets = targetFolder.GetComponentsInChildren<Target>(false); // get components in active children only
-        Debug.Log("Found " + allTargets.Length + " targets.");
+        allTargets = targetFolder.GetComponentsInChildren<Target>(false); // false = get components in active children only
+        Debug.Log("Found " + allTargets.Length + " active targets.");
         SelectNewTarget();
     }
 

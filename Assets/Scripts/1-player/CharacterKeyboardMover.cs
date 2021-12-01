@@ -8,28 +8,29 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class CharacterKeyboardMover: MonoBehaviour {
     [Tooltip("Speed of player keyboard-movement, in meters/second")]
-    [SerializeField] float _speed = 3.5f;
-    [SerializeField] float _gravity = 9.81f;
+    [SerializeField] float speed = 3.5f;
+    [SerializeField] float gravity = 9.81f;
 
-    private CharacterController _cc;
+    private CharacterController cc;
     void Start() {
-        _cc = GetComponent<CharacterController>();
+        cc = GetComponent<CharacterController>();
     }
 
     Vector3 velocity;
 
     void Update()  {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        //if (x == 0 && z == 0) return;
-        velocity.x = x * _speed;
-        velocity.z = z * _speed;
-        if (!_cc.isGrounded) {
-            velocity.y -= _gravity*Time.deltaTime;
+        if (cc.isGrounded) {
+            float x = Input.GetAxis("Horizontal");
+            float z = Input.GetAxis("Vertical");
+            velocity.x = x * speed;
+            velocity.z = z * speed;
+        } else {
+            velocity.y -= gravity*Time.deltaTime;
         }
-        // Click Up: velocity = (0,0,1)
+
+        // Move in the direction you look:
         velocity = transform.TransformDirection(velocity);
-        //Debug.Log("velocity="+velocity+" isGrounded="+ _cc.isGrounded);
-        _cc.Move(velocity * Time.deltaTime);
+
+        cc.Move(velocity * Time.deltaTime);
     }
 }
