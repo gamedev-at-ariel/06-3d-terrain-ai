@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
 
 /**
@@ -7,15 +8,36 @@ using UnityEngine.AI;
  */
 [RequireComponent(typeof(NavMeshAgent))]
 public class ClickMover : MonoBehaviour {
-
-    [Tooltip("0 = left mouse button; 1 = right mouse button")]
-    [Range(0, 1)]
-    [SerializeField] int mouseButtonToClick = 0;
-
     [SerializeField] bool drawRayForDebug = true;
     [SerializeField] float rayLength = 100f;
     [SerializeField] float rayDuration = 1f;
     [SerializeField] Color rayColor = Color.white;
+
+    [SerializeField] InputAction moveTo;
+    [SerializeField] InputAction moveToLocation;
+    void OnEnable() {
+        moveTo.Enable();
+        moveToLocation.Enable();
+    }
+    void OnDisable() {
+        moveTo.Disable();
+        moveToLocation.Disable();
+    }
+    void OnValidate() {
+        // Provide default bindings for the input actions.
+        // Based on answer by DMGregory: https://gamedev.stackexchange.com/a/205345/18261
+        if (moveTo == null)
+            moveTo = new InputAction(type: InputActionType.Button);
+        if (moveTo.bindings.Count == 0)
+            moveTo.AddBinding("<Mouse>/leftButton");
+
+        if (moveToLocation == null)
+            moveToLocation = new InputAction(type: InputActionType.Value, expectedControlType: "Vector2");
+        if (moveToLocation.bindings.Count == 0)
+            moveToLocation.AddBinding("<Mouse>/position");
+    }
+
+
 
     private NavMeshAgent agent;
     void Start() {
@@ -23,9 +45,11 @@ public class ClickMover : MonoBehaviour {
     }
 
     void Update() {
-        if (Input.GetMouseButton(mouseButtonToClick)) {
-            Ray rayFromCameraToClickPosition = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+        if (moveTo.WasPerformedThisFrame()) {
+            Vector2 mousePositionInScreenCoordinates = moveToLocation.ReadValue<Vector2>();
+            // Debug.Log("moving to screen coordinates: " + mousePositionInScreenCoordinates);
+            Ray rayFromCameraToClickPosition = Camera.main.ScreenPointToRay(mousePositionInScreenCoordinates);
+            
             if (drawRayForDebug)
                 Debug.DrawRay(rayFromCameraToClickPosition.origin, rayFromCameraToClickPosition.direction * rayLength, rayColor, rayDuration);
             

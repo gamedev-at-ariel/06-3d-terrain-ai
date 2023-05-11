@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 /**
@@ -12,18 +13,34 @@ public class CharacterKeyboardMover: MonoBehaviour {
     [SerializeField] float gravity = 9.81f;
 
     private CharacterController cc;
+
+    [SerializeField] InputAction moveAction;
+    private void OnEnable() { moveAction.Enable(); }
+    private void OnDisable() { moveAction.Disable(); }
+    void OnValidate() {
+        // Provide default bindings for the input actions.
+        // Based on answer by DMGregory: https://gamedev.stackexchange.com/a/205345/18261
+        if (moveAction == null)
+            moveAction = new InputAction(type: InputActionType.Button);
+        if (moveAction.bindings.Count == 0)
+            moveAction.AddCompositeBinding("2DVector")
+                .With("Up", "<Keyboard>/upArrow")
+                .With("Down", "<Keyboard>/downArrow")
+                .With("Left", "<Keyboard>/leftArrow")
+                .With("Right", "<Keyboard>/rightArrow");
+    }
+
     void Start() {
         cc = GetComponent<CharacterController>();
     }
 
-    Vector3 velocity;
+    Vector3 velocity = new Vector3(0,0,0);
 
     void Update()  {
         if (cc.isGrounded) {
-            float x = Input.GetAxis("Horizontal");
-            float z = Input.GetAxis("Vertical");
-            velocity.x = x * speed;
-            velocity.z = z * speed;
+            Vector3 movement = moveAction.ReadValue<Vector2>(); // Implicitly convert Vector2 to Vector3, setting z=0.
+            velocity.x = movement.x * speed;
+            velocity.z = movement.y * speed;
         } else {
             velocity.y -= gravity*Time.deltaTime;
         }
