@@ -13,8 +13,8 @@ public class ClickMover : MonoBehaviour {
     [SerializeField] float rayDuration = 1f;
     [SerializeField] Color rayColor = Color.white;
 
-    [SerializeField] InputAction moveTo;
-    [SerializeField] InputAction moveToLocation;
+    [SerializeField] InputAction moveTo = new InputAction(type: InputActionType.Button);
+    [SerializeField] InputAction moveToLocation = new InputAction(type: InputActionType.Value, expectedControlType: "Vector2");
     void OnEnable() {
         moveTo.Enable();
         moveToLocation.Enable();
@@ -24,15 +24,9 @@ public class ClickMover : MonoBehaviour {
         moveToLocation.Disable();
     }
     void OnValidate() {
-        // Provide default bindings for the input actions.
-        // Based on answer by DMGregory: https://gamedev.stackexchange.com/a/205345/18261
-        if (moveTo == null)
-            moveTo = new InputAction(type: InputActionType.Button);
+        // Provide default bindings for the input actions. Based on  https://gamedev.stackexchange.com/a/205345/18261
         if (moveTo.bindings.Count == 0)
             moveTo.AddBinding("<Mouse>/leftButton");
-
-        if (moveToLocation == null)
-            moveToLocation = new InputAction(type: InputActionType.Value, expectedControlType: "Vector2");
         if (moveToLocation.bindings.Count == 0)
             moveToLocation.AddBinding("<Mouse>/position");
     }
@@ -56,7 +50,8 @@ public class ClickMover : MonoBehaviour {
             RaycastHit hitInfo;
             bool hasHit = Physics.Raycast(rayFromCameraToClickPosition, out hitInfo);
             if (hasHit) {
-                agent.SetDestination(hitInfo.point);
+                //agent.SetDestination(hitInfo.point);
+                agent.destination = hitInfo.point;
             }
         }
     }
