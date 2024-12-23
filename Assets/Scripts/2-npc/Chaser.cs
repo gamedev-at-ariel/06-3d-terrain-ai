@@ -25,9 +25,8 @@ public class Chaser: MonoBehaviour {
 
     private void Update() {
         playerPosition = player.transform.position;
-        float distanceToPlayer = Vector3.Distance(playerPosition, transform.position);
         FacePlayer();
-        navMeshAgent.SetDestination(playerPosition);
+        navMeshAgent.destination = playerPosition;
     }
 
     private void FacePlayer() {
