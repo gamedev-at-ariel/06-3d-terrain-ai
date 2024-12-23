@@ -13,7 +13,7 @@ public class CharacterKeyboardMover: MonoBehaviour {
     [SerializeField] float gravity = 9.81f;
 
     private CharacterController cc;
-
+    
     [SerializeField] InputAction moveAction;
     private void OnEnable() { moveAction.Enable(); }
     private void OnDisable() { moveAction.Disable(); }
