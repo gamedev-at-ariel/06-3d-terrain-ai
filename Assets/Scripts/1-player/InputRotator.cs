@@ -9,9 +9,13 @@ public class InputRotator : MonoBehaviour {
 
     [Tooltip("Rotate the object according to the mouse X-axis movement?")]
     [SerializeField] bool horizontalRotation = true;
+    [SerializeField] float minHorizontalRotation = -360f;
+    [SerializeField] float maxHorizontalRotation = 360f;
 
     [Tooltip("Rotate the object according to the mouse Y-axis movement?")]
     [SerializeField] bool verticalRotation = true;
+    [SerializeField] float minVerticalRotation = -45f;
+    [SerializeField] float maxVerticalRotation = 45f;
 
     [SerializeField] InputAction lookLocation = new InputAction(type: InputActionType.Value);
     void OnEnable() {        lookLocation.Enable();    }
@@ -26,10 +30,17 @@ public class InputRotator : MonoBehaviour {
         Vector2 mouseDelta = lookLocation.ReadValue<Vector2>();
         Vector3 rotation = transform.localEulerAngles;
 
-        if (horizontalRotation)
-            rotation.y += mouseDelta.x * rotationSpeed;  // Rotation around the vertical (Y) axis
-        if (verticalRotation)
-            rotation.x -= mouseDelta.y * rotationSpeed;
+        if (horizontalRotation) {
+            rotation.y = Mathf.Clamp(rotation.y + mouseDelta.x * rotationSpeed, minHorizontalRotation, maxHorizontalRotation);  // Rotation around the vertical (Y) axis
+        }
+        if (verticalRotation) {
+            float newRotationX = rotation.x - mouseDelta.y * rotationSpeed;
+            if (newRotationX > 180f)
+                newRotationX -= 360f;
+            float ClampedRotationX = Mathf.Clamp(newRotationX, minVerticalRotation, maxVerticalRotation);
+            rotation.x = ClampedRotationX;
+        }
+
         transform.localEulerAngles = rotation;
     }
 }

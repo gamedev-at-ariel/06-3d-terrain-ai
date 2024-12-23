@@ -989,7 +989,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 0.1
   horizontalRotation: 0
+  minHorizontalRotation: -170
+  maxHorizontalRotation: 170
   verticalRotation: 1
+  minVerticalRotation: -40
+  maxVerticalRotation: 40
   lookLocation:
     m_Name: Look Location
     m_Type: 0
@@ -1019,7 +1023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77911510e77ffa1458d14803cc23fadc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3.5
+  speed: 10
   gravity: 9.81
   moveAction:
     m_Name: Move
@@ -1113,7 +1117,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotationSpeed: 0.1
   horizontalRotation: 1
+  minHorizontalRotation: -360
+  maxHorizontalRotation: 360
   verticalRotation: 0
+  minVerticalRotation: -180
+  maxVerticalRotation: 180
   lookLocation:
     m_Name: Look Location
     m_Type: 0
@@ -1149,7 +1157,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 1.85
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
@@ -1165,7 +1173,7 @@ Transform:
   m_GameObject: {fileID: 6366735190010363692}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 244, y: 11.4, z: 181}
+  m_LocalPosition: {x: 244, y: 11, z: 132}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
