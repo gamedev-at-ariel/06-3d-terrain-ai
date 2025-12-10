@@ -6,14 +6,11 @@ using UnityEngine.InputSystem;
  * Initially, it hides the cursor.
  */
 public class CursorHider : MonoBehaviour {
-    [SerializeField] InputAction toggleCursorAction;
+    [SerializeField] InputAction toggleCursorAction = new InputAction(type: InputActionType.Button);
     void OnEnable() { toggleCursorAction.Enable(); }
     void OnDisable() { toggleCursorAction.Disable(); }
     void OnValidate() {
-        // Provide default bindings for the input actions.
-        // Based on answer by DMGregory: https://gamedev.stackexchange.com/a/205345/18261
-        if (toggleCursorAction == null)
-            toggleCursorAction = new InputAction(type: InputActionType.Button);
+        // Provide default bindings for the input actions: https://gamedev.stackexchange.com/a/205345/18261
         if (toggleCursorAction.bindings.Count == 0)
             toggleCursorAction.AddBinding("<Mouse>/leftButton");
     }
