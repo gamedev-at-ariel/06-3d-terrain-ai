@@ -39,8 +39,10 @@ public class CharacterKeyboardMover: MonoBehaviour {
     void Update()  {
         if (cc.isGrounded) {
             Vector3 movement = moveAction.ReadValue<Vector2>(); // Implicitly convert Vector2 to Vector3, setting z=0.
-            velocity.x = movement.x * speed;
-            velocity.z = movement.y * speed;
+            velocity.x = movement.x;
+            velocity.z = movement.y;
+            velocity.Normalize();
+            velocity *= speed;
             velocity = transform.TransformDirection(velocity); // Move in the direction you look:
             velocity.y = standingSpeed;
         } else {
