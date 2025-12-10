@@ -3,7 +3,9 @@ using UnityEngine.AI;
 using UnityEngine.InputSystem;
 
 /**
- * Moves a NavMeshAgent to a fixed location, for demonstration
+ * Moves a NavMeshAgent to a fixed location, for demonstration.
+ * 
+ * NOTE: To use this agent, the CharacterController component must be disabled.
  */
 [RequireComponent(typeof(NavMeshAgent))]
 public class DemoMover : MonoBehaviour

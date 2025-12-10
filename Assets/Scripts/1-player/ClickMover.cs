@@ -5,6 +5,8 @@ using UnityEngine.InputSystem;
 
 /**
  * This component sends its object to a point in the world whenever the player clicks on that point.
+ * 
+ * NOTE: To use this componenet, the CharacterController components should be disabled.
  */
 [RequireComponent(typeof(NavMeshAgent))]
 public class ClickMover : MonoBehaviour {
@@ -50,8 +52,8 @@ public class ClickMover : MonoBehaviour {
             RaycastHit hitInfo;
             bool hasHit = Physics.Raycast(rayFromCameraToClickPosition, out hitInfo);
             if (hasHit) {
-                //agent.SetDestination(hitInfo.point);
-                agent.destination = hitInfo.point;
+                agent.SetDestination(hitInfo.point);
+                //agent.destination = hitInfo.point;
             }
         }
     }

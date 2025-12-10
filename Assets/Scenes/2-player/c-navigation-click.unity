@@ -665,6 +665,36 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 6164217008461742000}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &803828183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803828182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 578cf7b594ac0a34fb65da6655e8505a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DemoMover
+  target: {fileID: 1488672696}
+  clickAction:
+    m_Name: Click
+    m_Type: 1
+    m_ExpectedControlType: 
+    m_Id: 41a8c163-7530-49b0-a4a1-c6261792cc8d
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 4d75645f-9ba4-4d6f-b368-6d3e2857f806
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Click
+      m_Flags: 0
+    m_Flags: 0
 --- !u!195 &803828184
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -687,56 +717,6 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &803828194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 803828182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddb8eff7bd45650418b512773172b50f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ClickMover
-  drawRayForDebug: 1
-  rayLength: 100
-  rayDuration: 1
-  rayColor: {r: 1, g: 1, b: 1, a: 1}
-  moveTo:
-    m_Name: Move To
-    m_Type: 1
-    m_ExpectedControlType: 
-    m_Id: d17408c7-f8d1-4920-8c99-fc6cedfa166c
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 8e0a4aae-c7b4-48e7-9553-67215299b9d0
-      m_Path: <Mouse>/leftButton
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move To
-      m_Flags: 0
-    m_Flags: 0
-  moveToLocation:
-    m_Name: Move To Location
-    m_Type: 0
-    m_ExpectedControlType: Vector2
-    m_Id: aec96cca-10ac-49e1-ad0c-a9edc7dcc955
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 4489b429-2f02-46f5-9e5c-087c490324aa
-      m_Path: <Mouse>/position
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Move To Location
-      m_Flags: 0
-    m_Flags: 0
 --- !u!1 &858821013 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3508109048387599921, guid: 8f2244bd8775be140aee8321dfe0d112,
@@ -1328,7 +1308,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7518165538999199939, guid: b5f7b5c0d88dae149bf94f18fb43534a,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 803828194}
+      addedObject: {fileID: 803828183}
   m_SourcePrefab: {fileID: 100100000, guid: b5f7b5c0d88dae149bf94f18fb43534a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
