@@ -9,10 +9,10 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Patroller: MonoBehaviour {
     [Tooltip("Minimum time to wait at target between running to the next target")]
-    [SerializeField] private float minWaitAtTarget = 7f;
+    [SerializeField] private float minWaitAtTarget = 3f;
 
     [Tooltip("Maximum time to wait at target between running to the next target")]
-    [SerializeField] private float maxWaitAtTarget = 15f;
+    [SerializeField] private float maxWaitAtTarget = 7f;
 
 
     [Tooltip("A game object whose children have a Target component. Each child represents a target.")]
@@ -39,7 +39,7 @@ public class Patroller: MonoBehaviour {
     private void SelectNewTarget() {
         currentTarget = allTargets[Random.Range(0, allTargets.Length - 1)];
         Debug.Log("New target: " + currentTarget.name);
-        navMeshAgent.destination = currentTarget.transform.position;
+        navMeshAgent.SetDestination(currentTarget.transform.position);
         //if (animator) animator.SetBool("Run", true);
         timeToWaitAtTarget = Random.Range(minWaitAtTarget, maxWaitAtTarget);
     }
